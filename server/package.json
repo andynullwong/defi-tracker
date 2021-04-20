@@ -1,0 +1,22 @@
+{
+  "name": "defi-tracker-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/AndyWongDev/defi-tracker.git",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyWongDev/defi-tracker/issues"
+  },
+  "homepage": "https://github.com/AndyWongDev/defi-tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
