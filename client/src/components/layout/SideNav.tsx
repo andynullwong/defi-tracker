@@ -1,44 +1,42 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Menu } from "antd";
 import {
   DashboardOutlined,
   DollarCircleOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import { MenuType } from "../../store/layout/types";
+import { selectMenu, setMenu } from "../../store/layout/slice";
 
-enum MenuTypes {
-  Dashboard = "dashboard",
-  Payments = "payments",
-  Settings = "settings",
-}
+const { Item } = Menu;
 
 const SideNav = () => {
-  const [menu, setMenu] = useState(MenuTypes.Dashboard);
+  const menu = useSelector(selectMenu);
+  const dispatch = useDispatch();
 
   return (
     <Menu theme="dark" mode="inline" defaultSelectedKeys={[menu]}>
-      <Menu.Item
+      <Item
         key="dashboard"
-        icon={
-          <DashboardOutlined onClick={() => setMenu(MenuTypes.Dashboard)} />
-        }
+        icon={<DashboardOutlined />}
+        onClick={() => dispatch(setMenu(MenuType.Dashboard))}
       >
         Dashboard
-      </Menu.Item>
-      <Menu.Item
+      </Item>
+      <Item
         key="payments"
-        icon={
-          <DollarCircleOutlined onClick={() => setMenu(MenuTypes.Payments)} />
-        }
+        icon={<DollarCircleOutlined />}
+        onClick={() => dispatch(setMenu(MenuType.Payments))}
       >
         Payments
-      </Menu.Item>
-      <Menu.Item
+      </Item>
+      <Item
         key="settings"
-        icon={<SettingOutlined onClick={() => setMenu(MenuTypes.Settings)} />}
+        icon={<SettingOutlined />}
+        onClick={() => dispatch(setMenu(MenuType.Settings))}
       >
         Settings
-      </Menu.Item>
+      </Item>
     </Menu>
   );
 };

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import "./App.css";
+import "./Layout.css";
 import SideNav from "./SideNav";
 
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
-  // const [menu, setMenu] = useState("dashboard");
 
   return (
     <Layout>
