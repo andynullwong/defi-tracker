@@ -11,13 +11,16 @@ export const layoutSlice = createSlice({
   name: "layout",
   initialState,
   reducers: {
+    setCollapsed: (state, action) => {
+      state.collapsed = action.payload;
+    },
     setMenu: (state, action) => {
       state.menu = action.payload;
     },
   },
 });
 
-export const { setMenu } = layoutSlice.actions;
+export const { setCollapsed, setMenu } = layoutSlice.actions;
 
 export const selectCollapsed = (state: ApplicationState) =>
   state.layout.collapsed;

@@ -1,18 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import "./Layout.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCollapsed,
+  selectMenu,
+  setCollapsed,
+} from "../../store/layout/slice";
 import SideNav from "./SideNav";
+import "./Layout.css";
+import { MenuType } from "../../store/layout/types";
+import Dashboard from "../dashboard";
+import Payments from "../payments";
+import Settings from "../settings/settings";
 
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const collapsed = useSelector(selectCollapsed);
+  const menu = useSelector(selectMenu);
+  const dispatch = useDispatch();
+
+  const content = (selectedMenu: MenuType): JSX.Element => {
+    switch (selectedMenu) {
+      case MenuType.Dashboard:
+        return <Dashboard />;
+      case MenuType.Payments:
+        return <Payments />;
+      case MenuType.Settings:
+        return <Settings />;
+      default:
+        return <></>;
+    }
+  };
 
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo">🦝 Defi Portal</div>
+        <div className="logo">{`🦝 ${!collapsed ? "Defi Portal" : ""}`}</div>
         <SideNav />
       </Sider>
       <Layout className="site-layout">
@@ -21,7 +46,7 @@ const App = () => {
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
               className: "trigger",
-              onClick: () => setCollapsed(!collapsed),
+              onClick: () => dispatch(setCollapsed(!collapsed)),
             }
           )}
         </Header>
@@ -33,7 +58,7 @@ const App = () => {
             minHeight: 280,
           }}
         >
-          Content
+          {content(menu)}
         </Content>
       </Layout>
     </Layout>
