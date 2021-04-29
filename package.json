@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/AndyWongDev/defi-tracker/issues"
   },
-  "homepage": "https://github.com/AndyWongDev/defi-tracker#readme"
+  "homepage": "https://github.com/AndyWongDev/defi-tracker#readme",
+  "devDependencies": {
+    "@aws-amplify/cli": "^4.50.0"
+  }
 }
