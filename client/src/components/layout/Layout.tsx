@@ -13,6 +13,7 @@ import { MenuType } from "../../store/layout/types";
 import Dashboard from "../dashboard";
 import Payments from "../payments";
 import Settings from "../settings/settings";
+import { YieldwatchApi } from "../dashboard/types";
 
 const { Header, Sider, Content } = Layout;
 
@@ -33,6 +34,15 @@ const App = () => {
         return <></>;
     }
   };
+
+  const testFetch: () => Promise<YieldwatchApi> = async () => {
+    const res: Response = await fetch(`/wallet/<placeholder>`);
+    const json: YieldwatchApi = await res.json();
+    console.log(json);
+    return json;
+  };
+
+  testFetch();
 
   return (
     <Layout>
