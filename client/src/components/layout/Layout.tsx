@@ -37,7 +37,7 @@ const App = () => {
 
   const testFetch: () => Promise<YieldwatchApi> = async () => {
     const res: Response = await fetch(
-      `/wallet/0x531ebe0e99d98a532a6f07105134d18d406aa550`
+      `api/wallet/0x531ebe0e99d98a532a6f07105134d18d406aa550`
     );
     const json: YieldwatchApi = await res.json();
     console.log(json);

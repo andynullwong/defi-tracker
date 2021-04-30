@@ -1,11 +1,19 @@
 const express = require("express");
 const fetch = require("node-fetch");
+const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.get("/wallet/:address", (req, res) => {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/api/hello", (req, res) => {
+  res.send({ express: "Hello From Express" });
+});
+
+app.get("/api/wallet/:address", (req, res) => {
   const yieldwatch = "https://www.yieldwatch.net/api/all";
   const address = req.params.address;
   const platforms = ["beefy"];
@@ -17,6 +25,14 @@ app.get("/wallet/:address", (req, res) => {
     .then((json) => res.send(json));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
+
+app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
