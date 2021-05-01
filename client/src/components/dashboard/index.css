@@ -1,0 +1,17 @@
+tfoot th,
+tfoot td {
+  background: #fafafa;
+}
+[data-theme='dark'] tfoot th,
+[data-theme='dark'] tfoot td {
+  background: #1d1d1d;
+}
+
+i {
+  font-size: xx-large;
+}
+
+.dashboard-coin-name {
+  font-family: 'Lato', sans-serif;
+  font-size: xx-large;
+}
