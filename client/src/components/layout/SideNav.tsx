@@ -5,7 +5,7 @@ import {
   DollarCircleOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { MenuType } from "../../store/layout/types";
+import { MenuType } from "../../types/layout/layout.types";
 import { selectMenu, setMenu } from "../../store/layout/slice";
 
 const { Item } = Menu;

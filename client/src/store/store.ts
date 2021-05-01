@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import layoutSlice from "./layout/slice";
-import { LayoutState } from "./layout/types";
+import { configureStore } from '@reduxjs/toolkit';
+import layoutSlice from './layout/slice';
+import { LayoutState } from '../types/layout/layout.types';
 
 export const store = configureStore({
   reducer: {

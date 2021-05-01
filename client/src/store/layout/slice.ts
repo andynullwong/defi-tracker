@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ApplicationState } from "../store";
-import { LayoutState, MenuType } from "./types";
+import { LayoutState, MenuType } from "../../types/layout/layout.types";
 
 const initialState: LayoutState = {
   collapsed: false,

@@ -8,7 +8,7 @@ import {
   setCollapsed,
 } from '../../store/layout/slice';
 import SideNav from './SideNav';
-import { MenuType } from '../../store/layout/types';
+import { MenuType } from '../../types/layout/layout.types';
 import Dashboard from '../dashboard';
 import Payments from '../payments';
 import Settings from '../settings/settings';
