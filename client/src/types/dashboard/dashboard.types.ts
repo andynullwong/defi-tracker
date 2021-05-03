@@ -1,15 +1,17 @@
 export interface DashboardState {
-  singleAssetVault: Array<CryptoBalance>;
-  lpVault: Array<any>;
-  staking: Array<any>;
+  walletBalance: number;
+  depositBalance: number;
+  yieldBalance: number;
+  vaults: CryptoBalance<Vault>;
+  lpVaults: CryptoBalance<any>;
+  staking: CryptoBalance<any>;
 }
 
-interface CryptoBalance {
-  bifi: Array<Vault>;
-  btc: Array<Vault>;
-  eth: Array<Vault>;
-  mash: Array<Vault>;
-  usdc: Array<Vault>;
+interface CryptoBalance<T> {
+  [x: string]: Array<T>;
+  //   btc: Array<T>;
+  //   eth: Array<T>;
+  //   usdc: Array<T>;
 }
 
 interface Vault {

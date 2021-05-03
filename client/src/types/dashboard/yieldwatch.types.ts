@@ -7,7 +7,7 @@ export interface YieldwatchApi {
 interface YieldWatchResult {
   watchBalance: WatchBalance;
   currencies: Currencies;
-  walletBalance: WatchBalance;
+  walletBalance: WalletBalance;
   BeefyFinance: PoolMetadata;
 }
 
@@ -44,7 +44,7 @@ interface PoolMetadata {
   barnOfTrust: VaultMetadata;
 }
 
-interface VaultMetadata {
+export interface VaultMetadata {
   totalUSDValues: TotalUSDValues;
   vaults: Array<Vaults>;
 }
@@ -66,4 +66,9 @@ interface TotalUSDValues {
   deposit: number;
   yield: number;
   total: number;
+}
+
+interface WalletBalance {
+  totalUSDValue: number;
+  balances: Array<any>;
 }
