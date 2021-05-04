@@ -26,6 +26,9 @@ const Dashboard = () => {
       <div>Wallet Balance: {currencyFormatter(walletBalance)}</div>
       <div>Deposit Balance: {currencyFormatter(depositBalance)}</div>
       <div>Yield Balance: {currencyFormatter(yieldBalance)}</div>
+      <div>
+        Total Balance: {currencyFormatter(depositBalance + yieldBalance)}
+      </div>
       <BalanceTable currency={'usdc'} columns={columns} data={data} />
     </>
   );

@@ -37,29 +37,58 @@ interface Currencies {
   CHF: number;
 }
 
-interface PoolMetadata {
-  vaults: VaultMetadata;
-  LPVaults: VaultMetadata;
-  staking: VaultMetadata;
-  barnOfTrust: VaultMetadata;
+export interface PoolMetadata {
+  vaults: VaultMetadata<Vault>;
+  LPVaults: VaultMetadata<LPVault>;
+  staking: VaultMetadata<any>;
+  barnOfTrust: VaultMetadata<any>;
 }
 
-export interface VaultMetadata {
+export interface VaultMetadata<T> {
   totalUSDValues: TotalUSDValues;
-  vaults: Array<Vaults>;
+  vaults: Array<T>;
 }
 
-interface Vaults {
+export interface Vault {
   name: string;
-  type: string;
+  type: VaultType;
   contractAddress: string;
-  platform: string;
+  platform: VaultPlatform;
   depositToken: string;
   priceInUSDDepositToken: number;
   apy: number;
   currentTokens: number;
   depositedTokens: number;
   vaultSessions: Array<any>;
+}
+
+export interface LPVault extends Vault {
+  depositTokenAddress: string;
+  LPinfo: {
+    compactSessions: Array<any>;
+    symbolToken0: string;
+    symbolToken1: string;
+    depositToken0: number;
+    depositToken1: number;
+    priceInUSDToken0: number;
+    priceInUSDToken1: number;
+    changeToken0: number;
+    changeToken1: number;
+    feesEarnedInToken0: number;
+    feesEarnedInToken1: number;
+    winningsToken0: number;
+    winningsToken1: number;
+    currentToken0: number;
+    currentToken1: number;
+    poolToken0: number;
+    poolToken1: number;
+    actPrice: number;
+    hodlInToken1: number;
+    actInToken1: number;
+    ILInToken1: number;
+    faktorIL: number;
+    depositPrice: number;
+  };
 }
 
 interface TotalUSDValues {
@@ -71,4 +100,15 @@ interface TotalUSDValues {
 interface WalletBalance {
   totalUSDValue: number;
   balances: Array<any>;
+}
+
+export enum VaultType {
+  vault = 'vault',
+  lpVault = 'lpVault',
+  staking = 'staking',
+  barnOfTrust = 'barnOfTrust',
+}
+
+enum VaultPlatform {
+  beefy = 'beefy',
 }

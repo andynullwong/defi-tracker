@@ -6,35 +6,30 @@ const initialState: DashboardState = {
   walletBalance: 0,
   depositBalance: 0,
   yieldBalance: 0,
-  vaults: {},
-  lpVaults: {},
-  staking: {},
 };
 
 export const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
   reducers: {
-    resetWalletBalance: (state) => {
-      state.walletBalance = 0;
-      state.depositBalance = 0;
-      state.yieldBalance = 0;
-    },
+    resetAllBalances: (state) => initialState,
     setWalletBalance: (state, action) => {
       state.walletBalance = action.payload;
     },
-    addWalletBalance: (state, action) => {
-      const { deposit, yield: yieldBalance } = action.payload;
-      state.depositBalance += deposit;
-      state.yieldBalance += yieldBalance;
+    addDepositBalance: (state, action) => {
+      state.depositBalance += action.payload;
+    },
+    addYieldBalance: (state, action) => {
+      state.yieldBalance += action.payload;
     },
   },
 });
 
 export const {
-  addWalletBalance,
   setWalletBalance,
-  resetWalletBalance,
+  resetAllBalances,
+  addDepositBalance,
+  addYieldBalance,
 } = dashboardSlice.actions;
 
 export const selectWalletBalance = (state: ApplicationState) =>

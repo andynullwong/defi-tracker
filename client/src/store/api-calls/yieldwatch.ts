@@ -5,9 +5,11 @@ import {
 } from '../../types/api-calls/yieldwatch.types';
 import {
   setWalletBalance,
-  resetWalletBalance,
-  addWalletBalance,
+  resetAllBalances,
+  addDepositBalance,
+  addYieldBalance,
 } from '../dashboard/slice';
+import { appendPool } from '../pools/slice';
 
 export const yieldwatchFetch = async (
   address: string,
@@ -31,7 +33,7 @@ const parseYieldwatchJson = (
     const { walletBalance, BeefyFinance } = result;
     const { vaults, LPVaults, staking, barnOfTrust } = BeefyFinance;
 
-    dispatch(resetWalletBalance());
+    dispatch(resetAllBalances());
     dispatch(setWalletBalance(walletBalance.totalUSDValue));
 
     parseVaultMetadata(vaults, dispatch);
@@ -42,13 +44,13 @@ const parseYieldwatchJson = (
 };
 
 const parseVaultMetadata = (
-  metadata: VaultMetadata,
+  metadata: VaultMetadata<any>, // TODO: Handle LP properly
   dispatch: Dispatch<AnyAction>
 ) => {
   const { totalUSDValues, vaults } = metadata;
-  dispatch(addWalletBalance(totalUSDValues));
+  dispatch(addDepositBalance(totalUSDValues.deposit));
+  dispatch(addYieldBalance(totalUSDValues.yield));
   vaults.forEach((v) => {
-    // TODO: Add vault info to Cards
-    console.log('Fetching Vault Data:', v);
+    dispatch(appendPool(v));
   });
 };
