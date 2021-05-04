@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { columns, data } from './mockData';
-import BalanceTable from './BalanceTable';
+import BalanceTable from '../../components/dashboard/BalanceTable';
 import {
   selectDepositBalance,
   selectWalletBalance,
@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     yieldwatchFetch('0x531ebe0e99d98a532a6f07105134d18d406aa550', dispatch);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

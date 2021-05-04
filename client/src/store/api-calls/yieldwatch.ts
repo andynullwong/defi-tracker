@@ -2,7 +2,7 @@ import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import {
   VaultMetadata,
   YieldwatchApi,
-} from '../../types/dashboard/yieldwatch.types';
+} from '../../types/api-calls/yieldwatch.types';
 import {
   setWalletBalance,
   resetWalletBalance,

@@ -9,9 +9,9 @@ import {
 } from '../../store/layout/slice';
 import SideNav from './SideNav';
 import { MenuType } from '../../types/layout/layout.types';
-import Dashboard from '../dashboard';
-import Payments from '../payments';
-import Settings from '../settings/settings';
+import Dashboard from '../../pages/dashboard';
+import Payments from '../../pages/payments';
+import Settings from '../../pages/settings/settings';
 import './Layout.css';
 
 const { Header, Sider, Content } = Layout;
