@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const express = require('express');
-const fetch = require('node-fetch');
+
 const path = require('path');
+
+const userRouter = require('./routes/user.route');
+const walletRouter = require('./routes/wallet.route');
 
 const PORT = process.env.PORT || 8080;
 
@@ -14,17 +18,8 @@ app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
-app.get('/api/wallet/:address', (req, res) => {
-  const yieldwatch = 'https://www.yieldwatch.net/api/all';
-  const { address } = req.params;
-  const platforms = ['beefy'];
-
-  const url = `${yieldwatch}/${address}?platforms=${platforms.join()}`;
-
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => res.send(json));
-});
+app.use('/api/user', userRouter);
+app.use('/api/wallet', walletRouter);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
