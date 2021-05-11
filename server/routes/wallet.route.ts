@@ -1,7 +1,10 @@
-/* eslint-disable no-console */
-const router = require('express').Router();
-const fetch = require('node-fetch');
-// const pool = require('../postgres');
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import app from 'express';
+import fetch from 'node-fetch';
+
+const router = app.Router();
 
 router.get('/:address', (req, res) => {
   const yieldwatch = 'https://www.yieldwatch.net/api/all';
@@ -15,4 +18,4 @@ router.get('/:address', (req, res) => {
     .then((json) => res.send(json));
 });
 
-module.exports = router;
+export default router;

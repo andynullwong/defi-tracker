@@ -1,6 +1,7 @@
-/* eslint-disable no-console */
-const router = require('express').Router();
-const pool = require('../postgres');
+import express from 'express';
+import pool from '../postgres';
+
+const router = express.Router();
 
 router.get('/:id', (req, res) => {
   const sqlQuery = {
@@ -18,4 +19,4 @@ router.get('/:id', (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

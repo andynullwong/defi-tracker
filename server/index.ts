@@ -1,11 +1,12 @@
-/* eslint-disable no-console */
-require('dotenv').config();
-const express = require('express');
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const path = require('path');
+import express from 'express';
 
-const userRouter = require('./routes/user.route');
-const walletRouter = require('./routes/wallet.route');
+import path from 'path';
+
+import userRouter from './routes/user.route';
+import walletRouter from './routes/wallet.route';
 
 const PORT = process.env.PORT || 8080;
 
