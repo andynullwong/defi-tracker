@@ -1,22 +1,8 @@
 import express from 'express';
-import pool from '../postgres';
+import { userController } from '../controllers/user.controller';
 
 const router = express.Router();
 
-router.get('/:id', (req, res) => {
-  const sqlQuery = {
-    name: 'fetch-username',
-    text: 'SELECT username, email FROM users WHERE id = $1',
-    values: [req.params.id],
-  };
-
-  pool.query(sqlQuery, (error, response) => {
-    if (error) {
-      console.log(error.stack);
-    } else {
-      res.send(response.rows[0]);
-    }
-  });
-});
+router.get('/:id', (req, res) => userController.getUser(req, res));
 
 export default router;

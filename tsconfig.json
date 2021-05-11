@@ -20,7 +20,11 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "baseUrl": "server",
-    "paths": {}
+    "paths": {
+      "controllers/*": ["controller/*"],
+      "models/*": ["models/*"],
+      "routers/*": ["routers/*"]
+    }
   },
   "include": ["server/**/*", "src/**/*.json", ".env"],
   "exclude": ["node_modules"]
